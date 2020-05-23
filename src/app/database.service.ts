@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
+import { Subject } from 'rxjs';
 
 export interface Category {
   name: string;
@@ -17,6 +18,7 @@ export interface SoccerAction {
   providedIn: 'root'
 })
 export class DatabaseService {
+  logSubject: Subject<Array<SoccerAction>> = new Subject();
   log: Array<SoccerAction> = [];
   categories: Array<Category> = [
     {
@@ -89,10 +91,11 @@ export class DatabaseService {
   recordAction(action: SoccerAction) {
     action.timestamp = Date.now();
     this.log.push(action);
+    this.logSubject.next(this.log);
   }
 
   download() {
-    let blob: Blob = new Blob([JSON.stringify(this.categories)], { type: 'text/json; charset=utf-8' });
+    let blob: Blob = new Blob([JSON.stringify(this.log)], { type: 'text/json; charset=utf-8' });
     saveAs(blob, 'data.json');
   }
 }

@@ -19,6 +19,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { SoccerFieldComponent } from './soccer-field/soccer-field.component';
 import { EventLogComponent } from './event-log/event-log.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatTabsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     {
