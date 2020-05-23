@@ -1,0 +1,21 @@
+.button-row {
+  display: table-cell;
+}
+
+.vert-spacing {
+  justify-content: space-evenly;
+  display: flex;
+  margin: 10px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

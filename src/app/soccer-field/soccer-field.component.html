@@ -1,0 +1,5 @@
+<mat-grid-list cols="4" rowHeight="2:1" class="field-outline">
+  <mat-grid-tile *ngFor="let quad of database.getQuadrants(); let i = index">
+    <button (click)="selectedChanged(i)" class="field-cell">{{ quad }}</button>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,32 @@
+<mat-tab-group [(selectedIndex)]="selected" animationDuration="0ms">
+  <mat-tab
+    *ngFor="let cat of database.getCategories()"
+    label="{{ cat.name }}"
+    (swipeleft)="swipe($event.type)"
+    (swiperight)="swipe($event.type)"
+  >
+    <div *ngFor="let stat of cat.stats" class="vert-spacing row center">
+      <div class="column">
+        {{ stat }}
+      </div>
+      <div class="column">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="selectedChanged(stat, 1)"
+        >
+          Good
+        </button>
+      </div>
+      <div class="column">
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="selectedChanged(stat, -1)"
+        >
+          Bad
+        </button>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
