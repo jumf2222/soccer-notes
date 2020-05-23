@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatabaseService } from '../database.service';
 
-export interface StatOption {
-  name: string, value: number
+export interface CategoryOption {
+  category: string, name: string, value: number
 }
 
 @Component({
@@ -14,8 +14,7 @@ export class CategoryListComponent implements OnInit {
 
   selected: number = 0;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
-  @Output() selectedChange: EventEmitter<StatOption> = new EventEmitter();
-
+  @Output() selectedChange: EventEmitter<CategoryOption> = new EventEmitter();
 
   constructor(public database: DatabaseService) {
   }
@@ -29,8 +28,8 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
-  selectedChanged(name: string, value: number) {
-    this.selectedChange.emit({ name: name, value: value });
+  selectedChanged(category: string, name: string, value: number) {
+    this.selectedChange.emit({ category: category, name: name, value: value });
   }
 
   ngOnInit(): void {

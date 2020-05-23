@@ -13,7 +13,7 @@
         <button
           mat-flat-button
           color="primary"
-          (click)="selectedChanged(stat, 1)"
+          (click)="selectedChanged(cat.name, stat, 1)"
         >
           Good
         </button>
@@ -22,7 +22,7 @@
         <button
           mat-flat-button
           color="warn"
-          (click)="selectedChanged(stat, -1)"
+          (click)="selectedChanged(cat.name, stat, -1)"
         >
           Bad
         </button>

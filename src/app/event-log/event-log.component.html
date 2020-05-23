@@ -6,16 +6,23 @@
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+    <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+  </ng-container>
+
   <!-- Weight Column -->
   <ng-container matColumnDef="quadrant">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Quadrant</th>
-    <td mat-cell *matCellDef="let element">{{ element.quadrant }}</td>
+    <td mat-cell *matCellDef="let element">
+      {{ database.getQuadrants()[element.quadrant] }}
+    </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="value">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
-    <td mat-cell *matCellDef="let element">{{ element.value }}</td>
+    <td mat-cell *matCellDef="let element">{{ valueToName(element.value) }}</td>
   </ng-container>
 
   <!-- Symbol Column -->

@@ -7,7 +7,8 @@ export interface Category {
   stats: Array<string>;
 }
 
-export interface SoccerAction {
+export interface SoccerEvent {
+  category: string;
   name: string;
   value: number;
   quadrant: number;
@@ -18,8 +19,8 @@ export interface SoccerAction {
   providedIn: 'root'
 })
 export class DatabaseService {
-  logSubject: Subject<Array<SoccerAction>> = new Subject();
-  log: Array<SoccerAction> = [];
+  logSubject: Subject<Array<SoccerEvent>> = new Subject();
+  log: Array<SoccerEvent> = [];
   categories: Array<Category> = [
     {
       name: "Attacking",
@@ -88,7 +89,7 @@ export class DatabaseService {
     return this.quadrants;
   }
 
-  recordAction(action: SoccerAction) {
+  recordAction(action: SoccerEvent) {
     action.timestamp = Date.now();
     this.log.push(action);
     this.logSubject.next(this.log);

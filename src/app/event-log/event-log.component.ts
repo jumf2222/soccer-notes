@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { DatabaseService, SoccerAction } from '../database.service';
+import { DatabaseService, SoccerEvent } from '../database.service';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
@@ -11,8 +11,8 @@ import { MatSort } from '@angular/material/sort';
 })
 export class EventLogComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'quadrant', 'value', 'timestamp'];
-  dataSource = new MatTableDataSource<SoccerAction>();
+  displayedColumns: string[] = ['name', 'category', 'quadrant', 'value', 'timestamp'];
+  dataSource = new MatTableDataSource<SoccerEvent>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -24,7 +24,12 @@ export class EventLogComponent implements OnInit {
   }
 
   dateToString(timestamp: number) {
-    return new Date(timestamp).toUTCString();
+    let date = new Date(timestamp);
+    return `${date.getHours() % 12}:${date.getMinutes()}:${date.getSeconds()} ${date.getHours() < 12 ? "AM" : "PM"}`;
+  }
+
+  valueToName(value: number) {
+    return value >= 0 ? "Good" : "Bad";
   }
 
   constructor(public database: DatabaseService) { }

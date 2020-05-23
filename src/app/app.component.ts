@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DatabaseService, SoccerAction } from './database.service';
-import { StatOption } from './category-list/category-list.component';
+import { DatabaseService, SoccerEvent } from './database.service';
+import { CategoryOption } from './category-list/category-list.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { StatOption } from './category-list/category-list.component';
 })
 export class AppComponent {
   title: string = 'Soccer Notes';
-  action: SoccerAction = { name: null, value: null, quadrant: null, timestamp: null };
+  action: SoccerEvent = { category: null, name: null, value: null, quadrant: null, timestamp: null };
   statsOpen: boolean = true;
   recordQuadrant: boolean = true;
 
@@ -21,18 +21,19 @@ export class AppComponent {
     this.action.quadrant = quad;
     this.statsOpen = true;
     this.database.recordAction(this.action);
-    this.action = { name: null, value: null, quadrant: null, timestamp: null };
+    this.action = { category: null, name: null, value: null, quadrant: null, timestamp: null };
   }
 
-  statSelected(stat: StatOption) {
+  statSelected(stat: CategoryOption) {
     this.action.name = stat.name;
     this.action.value = stat.value;
+    this.action.category = stat.category;
 
     if (this.recordQuadrant) {
       this.statsOpen = false;
     } else {
       this.database.recordAction(this.action);
-      this.action = { name: null, value: null, quadrant: null, timestamp: null };
+      this.action = { category: null, name: null, value: null, quadrant: null, timestamp: null };
     }
     console.log(this.database.log);
   }
