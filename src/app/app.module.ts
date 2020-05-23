@@ -20,6 +20,8 @@ import { SoccerFieldComponent } from './soccer-field/soccer-field.component';
 import { EventLogComponent } from './event-log/event-log.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
