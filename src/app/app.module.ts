@@ -22,13 +22,18 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryListComponent,
     SoccerFieldComponent,
-    EventLogComponent
+    EventLogComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { environment } from '../environments/environment';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    LayoutModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [
     {
