@@ -1,12 +1,7 @@
-<h1 class="title">{{ title }}</h1>
-<button mat-button (click)="database.download()">Download</button>
-<app-soccer-field
-  (selectedChange)="quadrantSelected($event)"
-  *ngIf="!statsOpen"
-></app-soccer-field>
-<app-category-list
-  (selectedChange)="statSelected($event)"
-  *ngIf="statsOpen"
-></app-category-list>
-<app-event-log></app-event-log>
-<router-outlet></router-outlet>
+<app-navbar>
+  <button mat-button (click)="database.download()">Download</button>
+  <app-soccer-field (selectedChange)="quadrantSelected($event)" *ngIf="!statsOpen"></app-soccer-field>
+  <app-category-list (selectedChange)="statSelected($event)" *ngIf="statsOpen"></app-category-list>
+  <app-event-log></app-event-log>
+  <router-outlet></router-outlet>
+</app-navbar>
